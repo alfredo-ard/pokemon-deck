@@ -17,7 +17,7 @@ export default async function Detail({
     const { id } = await params;
     console.log(id)
 
-     const post: any = await getData(`https://pokeapi.co/api/v2/pokemon/${id}`);
+        const post: any = await getData(`https://pokeapi.co/api/v2/pokemon/${id}`);
 
     return (
         <div

@@ -1,9 +1,8 @@
 "use client";
-
 import { Tomorrow } from "next/font/google";
 import { IoSearchSharp } from "react-icons/io5";
 import Image from "next/image";
-import { useState } from "react";
+import { useDebouncedCallback } from 'use-debounce';
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 const tomorrow = Tomorrow({
@@ -13,15 +12,20 @@ const tomorrow = Tomorrow({
 });
 
 export default function Search({ placeholder }: { placeholder: string }) {
-    const [input, setInput] = useState("")
-    function handleSearch(term: string) {
-        setInput(term)
-        console.log(term)
-    }
-    function handleClick() {
-        // onEnter(input)
-        setInput("")
-    }
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+    const { replace } = useRouter();
+
+    const handleSearch = useDebouncedCallback((term) => {
+        console.log(`Searching... ${term}`);
+        const params = new URLSearchParams(searchParams);
+        if (term) {
+            params.set('query', term);
+          } else {
+            params.delete('query');
+          }
+          replace(`${pathname}?${params.toString()}`);
+        }, 300);
 
     return (
         <div
@@ -37,9 +41,9 @@ export default function Search({ placeholder }: { placeholder: string }) {
                 onChange={(e) => {
                     handleSearch(e.target.value);
                 }}
-                
+                defaultValue={searchParams.get('query')?.toString()}
             />
-            <IoSearchSharp className="w-[30px] h-[30px] " onClick={handleClick}/>
+            <IoSearchSharp className="w-[30px] h-[30px]" />
         </div>
     );
 }
