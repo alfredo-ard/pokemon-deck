@@ -2,20 +2,16 @@
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import {useState} from "react" 
 
-export default function PagesButton () {
+export default function PagesButton ({sync} : {sync:number}) {
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();
 
     const [pages, setPages] = useState<number>(1)
+    sync && sync !== pages ? setPages(sync) : null
 
     function handleNext() {
-        // setPages(pages + 1)
-        // setTimeout(() => {
-        //     const params = new URLSearchParams(searchParams);
-        // params.set('page', pages.toString());
-        // replace(`${pathname}?${params.toString()}`);
-        // },300)
+
         setPages(prevPages => {
             const newPages = prevPages + 1;
             

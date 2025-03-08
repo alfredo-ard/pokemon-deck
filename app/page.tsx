@@ -34,7 +34,7 @@ export default async function Home(props: {
                 <Search placeholder="Search Pokemon by name or ID" />
             </div>
 
-           {query ? <div className="mt-10"></div> : <PagesButton/> } 
+           {query ? <div className="mt-10"></div> : <PagesButton sync={currentPage}/> } 
 
             <div className="p-5 flex items-center justify-evenly flex-wrap gap-10 w-[90%] mx-auto">
                 { query ? posts != null ?  <Deck name={posts.name} img={posts.sprites.other.home.front_default} id={Number(posts.id)} weight={Number(posts.weight)} height={Number(posts.height)}/> : <div>not found</div>
@@ -48,7 +48,7 @@ export default async function Home(props: {
                 )}
             </div>
 
-            {query ? "" : <PagesButton/> } 
+            {query ? "" : <PagesButton sync={currentPage}/> } 
 
         </div>
     );
