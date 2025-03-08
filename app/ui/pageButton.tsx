@@ -19,7 +19,7 @@ export default function PagesButton ({sync} : {sync:number}) {
                 const params = new URLSearchParams(searchParams);
                 params.set('page', newPages.toString()); 
                 replace(`${pathname}?${params.toString()}`);
-            }, 300);
+            }, 100);
     
             return newPages;
         });
@@ -33,7 +33,7 @@ export default function PagesButton ({sync} : {sync:number}) {
                 const params = new URLSearchParams(searchParams);
                 params.set('page', newPages.toString()); 
                 replace(`${pathname}?${params.toString()}`);
-            }, 300);
+            }, 100);
     
             return newPages;
         });

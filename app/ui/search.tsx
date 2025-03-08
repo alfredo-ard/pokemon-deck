@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useDebouncedCallback } from 'use-debounce';
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
+
 const tomorrow = Tomorrow({
     variable: "--font-tomorrow",
     weight: ["400"],

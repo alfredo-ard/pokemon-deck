@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import {formatNumber} from "../function"
 
 export default async function Deck({
     name,
@@ -14,9 +15,7 @@ export default async function Deck({
     weight: number;
     height: number;
 }) {
-    function formatNumber(num: number) {
-        return num.toString().padStart(4, "0");
-    }
+
 
     return (
         <Link

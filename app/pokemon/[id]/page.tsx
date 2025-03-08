@@ -1,6 +1,7 @@
 import { Tomorrow } from "next/font/google";
 import Image from "next/image";
 import getData from "../../api/fetch";
+import {formatNumber} from "../../function"
 
 const tomorrow = Tomorrow({
     variable: "--font-tomorrow",
@@ -26,7 +27,7 @@ export default async function Detail({
             <div className=" p-15 bg-slate-200 rounded-xl shadow-lg text-2xl text-purple-800">
                 <h1 className="font-extrabold text-4xl text-center text-black">
                     {post.name}{" "}
-                    <span className="text-2xl relative bottom-2">#0003</span>
+                    <span className="text-2xl relative bottom-2">#{formatNumber(Number(post.id))}</span>
                 </h1>
                 <div className="flex mt-5 gap-10">
                     <Image
